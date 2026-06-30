@@ -1,0 +1,3 @@
+Select * from Employee
+order by emp_salary desc
+limit 1  offset 2;
