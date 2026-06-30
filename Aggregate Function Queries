@@ -1,0 +1,5 @@
+--Aggreagte Function Queries
+select count(emp_name) from Employee;
+select max(emp_salary) from Employee;
+select min(emp_salary) from Employee;
+select avg(emp_salary) from Employee;
