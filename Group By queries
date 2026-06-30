@@ -1,0 +1,7 @@
+--Group by queries
+select  count(emp_name)from Employee
+group by dept;
+select  avg(emp_salary)from Employee
+group by dept;
+select  max(emp_salary)from Employee
+group by dept;
