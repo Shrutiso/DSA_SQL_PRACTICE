@@ -1,0 +1,31 @@
+Create table Employee (emp_id int primary key , emp_name varchar(20) , emp_salary int ,age int, dept varchar(20) ,address varchar(50), Date_joined varchar(50));
+INSERT INTO Employee
+VALUES (101, 'Amit', 30000,24, 'CSE', 'Delhi','1/06/2024');
+
+INSERT INTO Employee
+VALUES (102, 'Shruti', 40000,,25, 'HR', 'Mumbai' ,'1/06/2024');
+
+INSERT INTO Employee
+VALUES (103, 'Anchal', 50000,26, 'IT', 'Pune','1/06/2024');
+
+INSERT INTO Employee
+VALUES (104, 'Adit', 60000,27, 'HR', 'Hydrabad','1/06/2024');
+
+INSERT INTO Employee
+VALUES (105, 'Niti', 70000,30, 'CSE', 'Hydrabad','1/06/2024');
+
+INSERT INTO Employee
+VALUES (106, 'Arjun', 80000,32, 'CSE', 'Hydrabad','1/06/2024');
+
+INSERT INTO Employee
+VALUES (107, 'Raj', 90000,45, 'CSE', 'Delhi','1/06/2024');
+
+INSERT INTO Employee
+VALUES (108, 'Sristi', 45000,36, 'CSE', 'Patna','1/06/2024');
+
+INSERT INTO Employee
+VALUES (109, 'Kiran', 1000,29, 'CSE', 'Bhopal','1/06/2024');
+
+INSERT INTO Employee
+VALUES (110, 'Rahul', 90000,22, 'CSE', 'Kolkata','1/06/2024');
+select * from Employee;
