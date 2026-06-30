@@ -1,0 +1,9 @@
+update  Employee
+set emp_salary = 10000
+where emp_name= 'Rahul';
+update  Employee
+set dept= 'IT'
+where emp_name= 'Kiran';
+delete from Employee
+where emp_id = 105;
+select*from Employee;
