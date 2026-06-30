@@ -1,7 +1,7 @@
 --Group by queries
-select  count(emp_name)from Employee
+select dept, count(emp_name) as Total_employees from Employee
 group by dept;
-select  avg(emp_salary)from Employee
+select dept ,  avg(emp_salary) as Avg_salary_dept_wise from Employee
 group by dept;
 select  max(emp_salary)from Employee
 group by dept;
