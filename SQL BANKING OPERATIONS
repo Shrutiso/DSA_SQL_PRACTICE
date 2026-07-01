@@ -1,0 +1,136 @@
+-- Create new customer
+CREATE TABLE Customer (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(50),
+    city VARCHAR(30),
+    pan VARCHAR(15)
+);
+
+CREATE TABLE Branch (
+    branch_id INT PRIMARY KEY,
+    branch_name VARCHAR(50)
+);
+
+CREATE TABLE Account (
+    account_id INT PRIMARY KEY,
+    customer_id INT,
+    account_type VARCHAR(20),
+    balance DECIMAL(10,2),
+    status VARCHAR(20),
+    branch_id INT,
+    FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+    FOREIGN KEY (branch_id) REFERENCES Branch(branch_id)
+);
+
+CREATE TABLE Transactions (
+    txn_id INT PRIMARY KEY,
+    account_id INT,
+    txn_type VARCHAR(10),
+    amount DECIMAL(10,2),
+    txn_date DATE,
+    status VARCHAR(20),
+    FOREIGN KEY (account_id) REFERENCES Account(account_id)
+);
+
+INSERT INTO Customer VALUES
+(101,'Shruti','Delhi','ABCDE1234F'),
+(102,'Rahul','Mumbai','PQRSX5678L'),
+(103,'Priya','Delhi','LMNOP9876Q'),
+(104,'Aman','Pune','ZXCVB5432K'),
+(105,'Neha','Bangalore','QWERT1122P');
+
+
+INSERT INTO Branch VALUES
+(1,'Delhi Branch'),
+(2,'Mumbai Branch'),
+(3,'Pune Branch'),
+(4,'Bangalore Branch'),
+(5,'Chennai Branch');
+
+INSERT INTO Account VALUES
+(5001,101,'SAVINGS',120000,'ACTIVE',1),
+(5002,102,'CURRENT',85000,'ACTIVE',2),
+(5003,103,'SAVINGS',45000,'ACTIVE',1),
+(5004,104,'CURRENT',250000,'BLOCKED',3),
+(5005,105,'SAVINGS',98000,'CLOSED',4);
+
+INSERT INTO Transactions VALUES
+(1,5001,'CREDIT',5000,'2026-06-25','SUCCESS'),
+(2,5001,'DEBIT',2000,'2026-06-26','SUCCESS'),
+(3,5002,'CREDIT',15000,'2026-06-27','SUCCESS'),
+(4,5003,'DEBIT',3000,'2026-06-28','FAILED'),
+(5,5004,'CREDIT',25000,'2026-06-29','SUCCESS');
+
+select * from Customer;
+select * from Branch;
+select * from Account;
+select * from Transactions;
+
+-- Open savings account
+-- Check account balance
+SELECT balance
+FROM Account
+WHERE account_id=5001;
+-- Update customer city
+UPDATE customer
+set city = 'Hydrabad'
+where customer_name = 'Aman';
+select * from Customer;
+
+-- Block account for fraud
+UPDATE account 
+set status = 'Blocked'
+where account_id = 5001;
+select * from Account;
+-- Delete closed account
+delete  from account
+where status = 'CLOSED';
+select * from Account;
+--Find all customers from Delhi
+select * from customer
+where city = 'Delhi';
+--Count total accounts
+select count(account_id) from account;
+
+--Show all SAVINGS accounts
+select * from account
+where account_type = 'SAVINGS';
+
+-- Get customer with highest balance
+SELECT c.customer_name,a.balance
+FROM Customer c
+JOIN Account a
+ON c.customer_id=a.customer_id
+ORDER BY a.balance DESC
+LIMIT 1;
+
+-- Deposit money - Credit txn
+UPDATE Account
+SET balance=balance+5000
+WHERE account_id=5001;
+INSERT INTO Transaction
+VALUES (1,5001,'CREDIT',5000,CURDATE(),'SUCCESS');
+
+--Withdraw money - Debit txn
+UPDATE Account
+SET balance=balance-5000
+WHERE account_id=5001;
+INSERT INTO Transaction
+VALUES (2,5001,'DEBIT',3000,CURDATE(),'SUCCESS');
+
+--Transfer between accounts
+UPDATE Account
+SET balance=balance-5000
+WHERE account_id=1;
+UPDATE Account
+SET balance=balance+5000
+WHERE account_id=2;
+select * from account;
+
+--Last 5 transactions of account
+SELECT *
+FROM Transactions
+WHERE account_id=5001
+ORDER BY txn_date DESC
+LIMIT 5;
+
