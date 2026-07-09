@@ -1,0 +1,129 @@
+--Assignment: Library Management
+
+--1. Create Database
+
+CREATE DATABASE library_management;
+
+-- 2. Use Database
+--USE library_management;
+
+-- 3. Create Books Table
+CREATE TABLE Books (
+    book_name VARCHAR(50),
+    author_name VARCHAR(50),
+    book_price INT NOT NULL,
+    qty int
+);
+
+-- 4. Create Members Table
+CREATE TABLE Members (
+    name VARCHAR(30)
+);
+
+-- 5. Create Issue Table
+CREATE TABLE Issue (
+    book_name VARCHAR(50),
+    issue_date DATE,
+    issued_by VARCHAR(50)
+);
+-- 6. Insert 5 Book Records
+INSERT INTO Books (book_name, author_name, book_price , qty)
+VALUES
+('The Alchemist', 'Paulo Coelho', 500,3),
+('Atomic Habits', 'James Clear', 650,5),
+('Rich Dad Poor Dad', 'Robert Kiyosaki', 450,6),
+('Think and Grow Rich', 'Napoleon Hill', 550,7),
+('Programming', 'Hector Garcia', 400,8);
+
+-- 7. Insert 5 Member Records
+INSERT INTO Members (name)
+VALUES
+('Shruti'),
+('Rahul'),
+('Priya'),
+('Aman'),
+('Neha');
+
+-- 8. Insert 5 Issue Records
+INSERT INTO Issue (book_name, issue_date, issued_by)
+VALUES
+('The Alchemist', '2026-07-01', 'Shruti'),
+('Atomic Habits', '2026-07-02', 'Rahul'),
+('Ikigai', '2026-07-03', 'Neha'),
+('Rich Dad Poor Dad', '2026-07-04', 'Aman'),
+('Think and Grow Rich', '2026-07-05', 'Priya');
+
+-- 9. Display the Records
+SELECT * FROM Books;
+SELECT * FROM Members;
+SELECT * FROM Issue;
+
+
+--11. Display Book Titles Only
+select book_name from Books;
+
+--12. Find Books by Author
+select book_name , author_name from Books;
+
+--13. Find Programming Books
+SELECT book_name
+FROM Books
+WHERE book_name LIKE 'Programming%';
+
+--14. Books Costing More Than 500
+select book_name where
+book_price>500;
+
+--15. Update Book Price
+update Books
+set book_price=550
+where author_name='Paulo Coelho';
+
+--16. Update Book Quantity
+update Books
+set qty = 5
+where author_name='Paulo Coelho';
+--17. Delete a Member
+delete from  Members
+where name = 'Shruti';
+
+--18. Delete a Book
+delete from Books
+where book_name='The Alchemist';
+
+--19. Count Total Books
+select count(book_name) from
+Books as Total_Number_of_Books;
+--20. Find Maximum Book Price
+select max(book_price) from Books as max_book_price;
+--21. Find Minimum Book Price
+select min(book_price) from Books as min_book_price;
+--22. Find Average Book Price
+select avg(book_price) from Books as avg_book_price;
+--23. Find Total Value of Books
+select sum(book_price) from Books as sum_of_book_price;
+--24. Sort Books by Price
+select * from Books 
+order by book_price asc;
+--25. Sort Books Alphabetically
+select * from Books 
+order by book_name asc;
+--26. Join Books and Issue Tables
+SELECT *
+FROM Books
+INNER JOIN Issue
+ON Books.book_name = Issue.book_name;
+
+--27. Join All Three Tables
+
+--28. Find Books Not Returned
+
+--29. Find Members Who Borrowed Books
+
+--30. Drop Books Table
+
+
+
+
+
+
