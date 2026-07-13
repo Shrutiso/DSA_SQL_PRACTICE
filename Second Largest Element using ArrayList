@@ -1,0 +1,22 @@
+//Second Largest Element in an ArrayList
+import java.util.*;
+class Main{
+    public static void main(String args[]){
+        ArrayList<Integer>list = new ArrayList<>();
+        list.add(10);
+        list.add(20);
+       int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE; 
+        for(Integer num : list){
+            if(num>largest){
+                secondLargest = largest;
+                largest = num;
+            }else if(num>secondLargest && num != largest){
+                num = secondLargest;
+            }
+        }
+        System.out.println("secondLargest: " +secondLargest);
+        
+        
+    }
+}
