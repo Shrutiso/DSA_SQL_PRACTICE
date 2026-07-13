@@ -1,0 +1,40 @@
+//LinkedList Implemenataion
+import java.util.LinkedList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        
+        LinkedList<Integer> list = new LinkedList<>();
+
+        
+        list.add(10);
+        list.add(20);
+        list.add(30);
+        list.add(40);
+
+    
+        System.out.println("LinkedList: " + list);
+
+        System.out.println("First Element: " + list.get(0));
+
+
+        list.set(1, 25);
+
+    
+        list.remove(2);
+
+
+        System.out.println("After Update & Remove: " + list);
+
+        System.out.println("Size: " + list.size());
+
+        
+        System.out.println("Is Empty? " + list.isEmpty());
+
+    
+        for (int num : list) {
+            System.out.println(num);
+        }
+    }
+}
