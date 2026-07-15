@@ -1,0 +1,26 @@
+//Reverse first k elements
+import java.util.*;
+class Main{
+    public static void main(String args[]){
+        Queue<Integer>q = new LinkedList<>();
+        q.add(10);
+        q.add(20);
+        q.add(30);
+        q.add(40);
+        q.add(50);
+        int k = 3;
+        Stack<Integer>st = new Stack<>();
+        for(int i = 0 ; i<k ; i++){
+            st.push(q.remove());
+        }
+        while(!st.isEmpty()){
+            q.add(st.pop());
+        }
+        int r = q.size()-k;
+        for(int i = 0 ; i<r ; i++){
+            q.add(q.remove());
+        }
+        System.out.println(q);
+        
+    }
+}
