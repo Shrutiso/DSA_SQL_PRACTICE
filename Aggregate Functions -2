@@ -1,0 +1,95 @@
+--Aggregate functions.
+--1. Total Salary of All Employees (SUM)
+--2. Average Salary (AVG)
+--3. Highest Salary (MAX)
+--4. Lowest Salary (MIN)
+--5. Count Total Employees (COUNT)
+--6. Department-wise Employee Count (GROUP BY)
+--7. Department-wise Total Salary
+--8. Department-wise Average Salary
+--9. Department-wise Highest Salary
+--10. Departments Having More Than 2 Employees (HAVING)
+--11. Departments with Average Salary Greater Than 45,000
+--12. Cities Having More Than 2 Employees
+--13. Employees Ordered by Salary (Highest to Lowest)
+--14. Employees Ordered by Department and Salary
+--15. Department-wise Total Salary Greater Than 100000
+
+create table Employee(
+     emp_id int primary key,
+    e_name varchar(20),
+    e_dept varchar(30),
+    e_salary int,
+    e_age int,
+    e_address varchar(50)
+);
+INSERT INTO Employee
+VALUES
+(101, 'Ravi', 'HR', 30000, 25, 'Hyderabad'),
+(102, 'Sita', 'IT', 50000, 28, 'Bangalore'),
+(103, 'Rahul', 'IT', 60000, 30, 'Hyderabad'),
+(104, 'Priya', 'Sales', 45000, 27, 'Chennai'),
+(105, 'Arjun', 'HR', 35000, 32, 'Bangalore'),
+(106, 'Kiran', 'Sales', 55000, 29, 'Hyderabad'),
+(107, 'Neha', 'IT', 70000, 35, 'Chennai'),
+(108, 'Ramesh', 'HR', 40000, 31, 'Hyderabad');
+
+select * from Employee;
+
+select sum(e_salary) as Total_Salary_sum from  Employee ;
+select avg(e_salary)  from  Employee ;
+select max(e_salary) from Employee ;
+select min(e_salary) from  Employee ;
+select count(emp_id) from  Employee ;
+select count(emp_id) , e_dept from Employee
+group by e_dept;
+select sum(e_salary) , e_dept from Employee
+group by e_dept;
+
+select avg(e_salary) , e_dept from Employee
+group by e_dept;
+
+select max(e_salary) , e_dept from Employee
+group by e_dept;
+
+select count(emp_id) , e_dept from Employee having count(emp_id) >2;
+SELECT e_dept
+FROM Employee
+GROUP BY e_dept
+HAVING AVG(e_salary) > 45000;
+
+select e_address from Employee
+group by e_address
+having count(emp_id) >2;
+
+select e_salary , e_name from Employee
+order by e_salary desc;
+
+select e_name , e_dept , e_salary from Employee
+order by e_salary asc;
+
+select e_dept , e_salary from Employee
+group by e_dept
+having sum(e_salary) > 100000;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
